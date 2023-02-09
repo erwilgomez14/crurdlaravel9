@@ -17,7 +17,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $datos['empleados'] = Empleado::paginate(5);
+        $datos['empleados'] = Empleado::paginate(1);
 
         return view('empleados.index', $datos );
     }
@@ -42,13 +42,13 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $campos=[
             'Nombre'=>'required|string|max:100',
             'ApellidoPaterno'=>'required|string|max:100',
             'ApellidoMaterno'=>'required|string|max:100',
             'Correo'=>'required|email',
-            'Nombre'=>'required|max:10000|mimes:jpeg,png,jpg',
+            'Foto'=>'required|max:10000|mimes:jpeg,png,jpg',
 
         ];
 
@@ -111,7 +111,34 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'ApellidoPaterno'=>'required|string|max:100',
+            'ApellidoMaterno'=>'required|string|max:100',
+            'Correo'=>'required|email',
+            
+
+        ];
+
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+
+        ];
+
+        if($request->hasFile('Foto')){
+
+            $campos=['Foto'=>'required|max:10000|mimes:jpeg,png,jpg',];
+
+            $mensaje=['Foto.required' => 'La foto es requerida'];
+
+        }
+        
+
+        $this->validate($request, $campos, $mensaje);
+
         $datosEmpleados = request()->except(['_token','_method']);
+
+
         if($request->hasFile('Foto')){
 
             $empleado = Empleado::findOrFail($id);
@@ -126,7 +153,10 @@ class EmpleadoController extends Controller
 
         $empleado = Empleado::findOrFail($id); //busca el registro por ID
 
-        return view('empleados.edit', compact('empleado'));
+        // return view('empleados.edit', compact('empleado'));
+
+        return redirect('empleado')->with('mensaje', 'Empleado Modificado satisfactoriamente');
+
     }
 
     /**
