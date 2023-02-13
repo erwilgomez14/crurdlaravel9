@@ -14,9 +14,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        $users['users'] = User::orderBy('id', 'desc')->paginate(3);
 
-        return view('admin.users.index', ['users' => $users]);//
+        return view('admin.users.index', $users);//
     }
 
     /**
@@ -48,7 +48,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show', ['user' => $user]);//
     }
 
     /**
@@ -59,6 +59,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        return view('admin.users.edit', ['user' => $user]);//
         //
     }
 

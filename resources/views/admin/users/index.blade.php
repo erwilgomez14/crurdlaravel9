@@ -6,12 +6,12 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th >ID</th>
-				<th >Name</th>
-				<th >Email</th>
-				<th >Role</th>
-				<th >Permisions</th>
-				<th >Tools</th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Role</th>
+				<th>Permisions</th>
+				<th>Tools</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,11 +22,16 @@
 				<th>{{$user->email}}</th>
 				<th>#</th>
 				<th>#</th>
-				<th>#</th>
+				<th>
+					<a href="/users/{{ $user->id }}"> <i class="fa fa-eye"></i></a>
+					<a href="/users/{{ $user->id }}/edit/"><i class="fa fa-edit"></i></a>
+
+				</th>
 			</tr>
 			@endforeach
 		</tbody>
 	</table>
+	{{ $users->links() }}
 
 </div>
 
