@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 // Route::get('/empleado/crear', [EmpleadoController::class, 'create']);
 
-Route::resource('empleado', EmpleadoController::class)->middleware('auth'); //Este middleware nos sirve para que el usuario tenga que ajuro estar autenticado 
+Route::resource('empleado', EmpleadoController::class)->middleware('auth')->names('empleados'); //Este middleware nos sirve para que el usuario tenga que ajuro estar autenticado 
 Auth::routes(['register'=>false, 'reset'=>false]); //esto ultimo sirve para invalidar estas rutas en este caso register y reset
 
 Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
@@ -35,4 +35,4 @@ Route::group(['middleware'=>'auth'], function () {
 });
 
 
-Route::resource('users', UsersController::class);
+Route::resource('users', UsersController::class)->names('users');

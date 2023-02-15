@@ -72,6 +72,9 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        dd($request);
+
+        $user->name = $request->name;
         //
     }
 

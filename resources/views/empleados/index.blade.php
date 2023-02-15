@@ -44,7 +44,9 @@
             <td>{{ $empleado->ApellidoMaterno }}</td>
             <td>{{ $empleado->Correo }}</td>
             <td>    
-                <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-info">Editar</a>
+                {{-- <a href="{{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-info">Editar</a> --}}
+                <a href="{{ route('empleados.edit', $empleado) }}" class="btn btn-info">Editar</a>
+
                 | 
                 <form action="{{ url('/empleado/'.$empleado->id) }}" class="d-inline" method="post" > <!-- Funcion para borrar registros-->
 
