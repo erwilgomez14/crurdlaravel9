@@ -65,7 +65,7 @@ class EmpleadoController extends Controller
         $datosEmpleados = request()->except('_token');  // almacenar toda la informacion exeptuando el _token
 
         if($request->hasFile('Foto')){
-            $datosEmpleados['Foto'] = $request->file('Foto')->store('uploads' , 'public');
+            $datosEmpleados['Foto'] = $request->file('Foto')->store('hola' , 'public');
 
         }
 
@@ -145,7 +145,7 @@ class EmpleadoController extends Controller
 
             Storage::delete('public/'.$empleado->Foto);
 
-            $datosEmpleados['Foto'] = $request->file('Foto')->store('uploads' , 'public');
+            $datosEmpleados['Foto'] = $request->file('Foto')->store('hola' , 'public');
         }
 
 
