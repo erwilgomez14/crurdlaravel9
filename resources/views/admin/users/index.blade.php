@@ -25,6 +25,7 @@
 				<th>
 					<a href="/users/{{ $user->id }}"> <i class="fa fa-eye"></i></a>
 					<a href="/users/{{ $user->id }}/edit/"><i class="fa fa-edit"></i></a>
+					<a href="#" data-toogle="modal" data-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>
 
 				</th>
 			</tr>
